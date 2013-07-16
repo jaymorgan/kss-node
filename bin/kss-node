@@ -177,7 +177,8 @@ process.nextTick(function() {
 					if (parentSection) {
 						parentSection.addChildSection(sections[k]);
 					} else {
-						throw new Error('Unable to build styleguide tree: section ' + sections[k].reference() + ' is missing its parent (' + parentReference + ').');
+						console.log('Unable to build styleguide tree: section ' + sections[k].reference() + ' is missing its parent (' + parentReference + ').');
+						process.exit(1);
 					}
 				}
 			}
