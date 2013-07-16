@@ -165,6 +165,20 @@ process.nextTick(function() {
 				}
 			}
 
+			for (var k = 0; k < sectionCount; k++) {
+				var parentReference = sections[k].reference().slice(0, sections[k].reference().length - 2),
+					parentSection = styleguide.data.section_refs[parentReference];
+
+				// Root sections have an empty parentReference
+				if (parentReference) {
+					if (parentSection) {
+						parentSection.addChildSection(sections[k]);
+					} else {
+						throw new Error('Unable to build styleguide tree: section ' + sections[k].reference() + ' is missing its parent (' + parentReference + ').');
+					}
+				}
+			}
+
 			sectionRoots.sort();
 			rootCount = sectionRoots.length;
 
@@ -290,17 +304,23 @@ generateIndex = function(styleguide, sections, pages, sectionRoots) {
 
 // Convert an array of `KssSection` instances to a JSON object.
 jsonSections = function(sections) {
-	return sections.map(function(section) {
-		return {
-			header: section.header(),
-			description: section.description(),
-			reference: section.reference(),
-			depth: section.data.refDepth,
-			deprecated: section.deprecated(),
-			experimental: section.experimental(),
-			modifiers: jsonModifiers(section.modifiers())
-		};
-	});
+	var sectionsAsJSON = [];
+
+	for (var i = 0; i < sections.length; i++) {
+		sectionsAsJSON.push({
+			header: sections[i].header(),
+			description: sections[i].description(),
+			reference: sections[i].reference(),
+			childSections: jsonSections(sections[i].childSections()),
+			refDepth: sections[i].data.refDepth,
+			deprecated: sections[i].deprecated(),
+			experimental: sections[i].experimental(),
+			markup: sections[i].markup(),
+			modifiers: jsonModifiers(sections[i].modifiers())
+		});
+	}
+
+	return sectionsAsJSON;
 };
 
 // Convert an array of `KssModifier` instances to a JSON object.
@@ -309,7 +329,8 @@ jsonModifiers = function(modifiers) {
 		return {
 			name: modifier.name(),
 			description: modifier.description(),
-			className: modifier.className()
+			className: modifier.className(),
+			markup: modifier.markup()
 		};
 	});
 };
