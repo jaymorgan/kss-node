@@ -105,7 +105,10 @@ console.log('');
 
 // Compile the Handlebars template
 template = fs.readFileSync(options.templateDirectory + '/index.html', 'utf8');
+sectionContentTemplate = fs.readFileSync(options.templateDirectory + '/section_content.html', 'utf8');
 template = handlebars.compile(template);
+sectionContentTemplate = handlebars.compile(sectionContentTemplate);
+handlebars.registerPartial('sectionContent', sectionContentTemplate);
 
 // Create a new "styleguide" directory and copy the contents
 // of "public" over.
