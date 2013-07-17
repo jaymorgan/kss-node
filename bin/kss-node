@@ -169,7 +169,8 @@ process.nextTick(function() {
 			}
 
 			for (var k = 0; k < sectionCount; k++) {
-				var parentReference = sections[k].reference().slice(0, sections[k].reference().length - 2),
+				var sectionNumbers = sections[k].reference().split('.'),
+					parentReference = sectionNumbers.slice(0, sectionNumbers.length - 1).join('.'),
 					parentSection = styleguide.data.section_refs[parentReference];
 
 				// Root sections have an empty parentReference
