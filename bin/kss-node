@@ -287,7 +287,7 @@ generatePage = function(styleguide, sections, root, pages, sectionRoots) {
 	);
 };
 
-// Equivalent to generatePage, however will take `styleguide.md` and render it
+// Equivalent to generatePage, however will take `README.md` and render it
 // using first Markdown and then Handlebars
 generateIndex = function(styleguide, sections, pages, sectionRoots) {
 	try {
@@ -299,7 +299,7 @@ generateIndex = function(styleguide, sections, pages, sectionRoots) {
 				sections: jsonSections(sections),
 				rootNumber: 0,
 				argv: argv || {},
-				overview: marked(fs.readFileSync(options.sourceDirectory + '/styleguide.md', 'utf8'))
+				overview: marked(fs.readFileSync(options.sourceDirectory + '/README.md', 'utf8'))
 			})
 		);
 	} catch(e) {

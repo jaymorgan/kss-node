@@ -66,7 +66,7 @@ Included are a few additional (optional) features to allow for completely automa
 
 Take a look at the [demo project](http://github.com/hughsk/kss-node/tree/master/demo) for some examples.
 
-*Overview Document**. This "overview" page is generated from a Markdown file, which you should place in the directory you're generating from, just name it `styleguide.md` and it will be included in the final styleguide automatically.
+*Overview Document**. This "overview" page is generated from a Markdown file, which you should place in the directory you're generating from, just name it `README.md` and it will be included in the final styleguide automatically.
 
 **HTML Markup**. In `kss-node` you can include sample markup in your styleguide entries. This is not only helpful for newcomers to a project, but is also used by the generator to include samples in your styleguide - just start a paragraph in your description section with `Markup:` like so:
 
