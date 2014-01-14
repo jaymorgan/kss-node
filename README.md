@@ -92,6 +92,10 @@ If you've got [mocha](https://github.com/visionmedia/mocha) installed, you can r
 
 To generate a new version of the demo styleguide, use `make gh-pages`. After committing your changes to master you can use the `gh-pages.sh` script to move this over to the `gh-pages` branch real quick.
 
+## Jay Morgan's Changes
+
+Attempting to add other sections and export certain classes and containers such as "Info" and "Important". Also take out some of the thinbking that the software has to do and add headings for the descriptions. I don't mind having to do some formatting to know that it will work better.
+
 ## Contributors
 
 * [Warin](http://github.com/Warin)
